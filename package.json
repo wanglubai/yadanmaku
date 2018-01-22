@@ -1,0 +1,29 @@
+{
+  "name": "yadanmaku",
+  "version": "1.0.0",
+  "description": "dom css danmaku",
+  "main": "index.js",
+  "scripts": {
+    "test": "init"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wanglubai/yadanmaku.git"
+  },
+  "keywords": [
+    "danmaku",
+    "css",
+    "dom",
+    "bullet",
+    "html5"
+  ],
+  "author": "wanglubai",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wanglubai/yadanmaku/issues"
+  },
+  "homepage": "https://github.com/wanglubai/yadanmaku#readme",
+  "devDependencies": {
+    "webpack": "^3.10.0"
+  }
+}
