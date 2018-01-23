@@ -4,10 +4,26 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <title>yadanmaku</title>
   <script src=""></script>
-  <script type="text/javascript" src="./output/index.js"></script>
+  <script type="text/javascript" src="./output/jquery.js"></script>
+  <script type="text/javascript" src="./output/YaDanmaku.js"></script>
+  <style>
+
+  </style>
 </head>
 
 <body>
+  <div id="view" style="width:800px;height:600px"></div>
+  <script>
+    var danmaku = new YaDanmaku();
+    danmaku.init({
+      'parent': document.getElementById('view')
+    });
+    setInterval(function () {
+      danmaku.play({
+        'msg': '<h1>asas</h1>'
+      });
+    }, 1000 / 24)
+  </script>
 
 </body>
 
