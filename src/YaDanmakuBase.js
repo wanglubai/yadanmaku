@@ -14,6 +14,7 @@ function YaDanmakuBase(vo) {
     tempThis._parent = vo['parent'];
     tempThis._display = $("<div class='YaDanmakuBase' style='position:absolute;top:" + vo['top'] + "px;transform:translateX(" + tempThis._parent.width() + "px)'></div>");
     tempThis._display.append(vo['msg']);
+    vo['class'] && tempThis._display.addClass(vo['class']);
     tempThis._parent.append(tempThis._display);
 
     var time = parseInt((tempThis._parent.width() - tempThis._display.width()) / tempThis._speed / 24);
@@ -41,7 +42,7 @@ function YaDanmakuBase(vo) {
     if (tempThis._canPush || tempThis._isDestroy) {
       return true;
     }
-    if (tempThis._display.offset().left < tempThis._parent.width() - tempThis._display.width()) {
+    if (tempThis._display.offset().left < tempThis._parent.width() - tempThis._display.width()-20) {
       return true;
     }
     return false;

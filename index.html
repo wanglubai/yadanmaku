@@ -7,20 +7,29 @@
   <script type="text/javascript" src="./output/jquery.js"></script>
   <script type="text/javascript" src="./output/YaDanmaku.js"></script>
   <style>
-
+    .type2 {
+      background-color: #00fff0;
+      border-radius: 10px;
+    }
   </style>
 </head>
 
 <body>
-  <div id="view" style="width:800px;height:600px"></div>
+  <div id="view" style="width:1200px;height:600px"></div>
   <script>
     var danmaku = new YaDanmaku();
     danmaku.init({
-      'parent': document.getElementById('view')
+      'parent': document.getElementById('view'),
+      'gapH': 40,
+      'gapW': 10,
     });
     setInterval(function () {
       danmaku.play({
-        'msg': '<h1>asas</h1>'
+        'msg': '<font color="#666666">asas</font>'
+      });
+      danmaku.play({
+        'msg': '<font color="#ff0000">asas</font>',
+        'class': 'type2'
       });
     }, 1000 / 24)
   </script>

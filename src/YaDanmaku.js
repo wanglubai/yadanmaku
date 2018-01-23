@@ -29,7 +29,7 @@ function YaDanmaku() {
 
   tempThis.update = function () {
     if (tempThis._isInit == false) return;
-    var maxIndex = parseInt(tempThis._display.height() / tempThis._gapH-1);
+    var maxIndex = parseInt(tempThis._display.height() / tempThis._gapH - 1);
     var curItem;
     var item;
     var vo;
