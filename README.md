@@ -1,7 +1,6 @@
 # yadanmaku
 
-css+dom+jquery danmaku
-弹幕基于jquery，动画css实现
+动画css transform实现
 
 初始化
 ```javascript
@@ -12,7 +11,7 @@ css+dom+jquery danmaku
  });
 ```
  
-	添加
+添加
 ```javascript
   danmaku.play({
       'msg': '<font color="#666666">asas</font>'
