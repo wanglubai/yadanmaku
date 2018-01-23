@@ -1,6 +1,6 @@
 # yadanmaku
 
-动画css transform实现
+动画css transition实现
 
 初始化
 ```javascript

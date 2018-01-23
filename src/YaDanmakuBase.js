@@ -1,5 +1,3 @@
-var debug = require('./YaDebug');
-
 function YaDanmakuBase(vo) {
   var tempThis = this;
   tempThis._isDestroy = false;
