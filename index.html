@@ -7,6 +7,11 @@
   <script type="text/javascript" src="./output/jquery.js"></script>
   <script type="text/javascript" src="./output/YaDanmaku.js"></script>
   <style>
+    .type0 {
+      opacity: 0.5;
+      border: 4px solid #ff00ff;
+    }
+
     .type1 {
       background-color: #ff0000;
       border-radius: 10px;
@@ -28,14 +33,31 @@
   <div id="view" style="width:1200px;height:600px"></div>
   <script>
     var danmaku = new YaDanmaku();
+    /*
+    parent 容器
+    line_height 每行所占行高
+    max_layer 弹幕层数
+    max_num 弹幕队列最大值，超过这个值抛掉弹幕
+    */
     danmaku.init({
       'parent': document.getElementById('view'),
-      'gapH': 40
+      'line_height': 40,
+      'max_layer': 8,
+      'max_num': 100
     });
+    //参数1 弹幕在弹幕容器起始行位置比例 
+    //参数2 弹幕在弹幕容器结束行位置比例
+    //库中并没有设置 弹幕全屏 半屏 顶部等类型 ，可通过设置比例实现 0-1 
+    danmaku.setRatio(0, 1);
+
     var i = 0;
     setInterval(function () {
+      /*
+      msg 所显示内容支持dom和文本
+      class 在当前弹幕容器上追加class属性
+      */
       danmaku.play({
-        'msg': '<font color="#666666">asas</font>'
+        'msg': '<font class="type0" color="#666666">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa1</font>'
       });
       danmaku.play({
         'msg': '<font color="#666666">hello world</font>',
@@ -45,7 +67,7 @@
         'msg': '<img class="type2img" src="http://pic.plures.net/users/avatar/056/697/643/56697643/8f2f8310290eb3bc8618dcd89fe0f79e.jpg" style="width:20px;height:20px"><font color="#ff0000">asas</font>',
         'class': 'type2'
       });
-    }, 1000 / 24)
+    }, 1000)
   </script>
 
 </body>
