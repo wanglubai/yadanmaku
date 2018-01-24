@@ -7,9 +7,19 @@
   <script type="text/javascript" src="./output/jquery.js"></script>
   <script type="text/javascript" src="./output/YaDanmaku.js"></script>
   <style>
+    .type1 {
+      background-color: #ff0000;
+      border-radius: 10px;
+    }
+
     .type2 {
       background-color: #00fff0;
       border-radius: 10px;
+    }
+
+    .type2img {
+      border-radius: 50%;
+      float: left;
     }
   </style>
 </head>
@@ -22,12 +32,17 @@
       'parent': document.getElementById('view'),
       'gapH': 40
     });
+    var i = 0;
     setInterval(function () {
       danmaku.play({
         'msg': '<font color="#666666">asas</font>'
       });
       danmaku.play({
-        'msg': '<font color="#ff0000">asas</font>',
+        'msg': '<font color="#666666">hello world</font>',
+        'class': 'type1'
+      });
+      danmaku.play({
+        'msg': '<img class="type2img" src="http://pic.plures.net/users/avatar/056/697/643/56697643/8f2f8310290eb3bc8618dcd89fe0f79e.jpg" style="width:20px;height:20px"><font color="#ff0000">asas</font>',
         'class': 'type2'
       });
     }, 1000 / 24)

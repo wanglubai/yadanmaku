@@ -40,7 +40,7 @@ function YaDanmakuBase(vo) {
     if (tempThis._canPush || tempThis._isDestroy) {
       return true;
     }
-    if (tempThis._display.offset().left < tempThis._parent.width() - tempThis._display.width()-20) {
+    if (tempThis._display.position().left < tempThis._parent.width() - tempThis._display.width() - 20) {
       return true;
     }
     return false;
