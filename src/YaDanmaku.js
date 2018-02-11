@@ -1,4 +1,5 @@
-var YaDanmakuBase = require('./YaDanmakuBase');
+import YaDanmakuBase from './YaDanmakuBase';
+import YaFactory from './YaFactory';
 
 function YaDanmaku() {
   var tempThis = this;
@@ -68,11 +69,10 @@ function YaDanmaku() {
         vo = tempThis._voList.shift();
         vo['parent'] = tempThis._display;
         vo['top'] = tempThis._lineHeight * i;
-        item = new YaDanmakuBase();
+        item = YaFactory.create();
         item.play(vo);
         itemArr[i] = item;
         nextLayer = false;
-        break;
       } else {
         curItem = itemArr[i];
         if (curItem.canPush()) {
@@ -80,11 +80,10 @@ function YaDanmaku() {
           vo['parent'] = tempThis._display;
           vo['top'] = tempThis._lineHeight * i;
           vo['speed'] = curItem.getSpeed();
-          item = new YaDanmakuBase();
+          item = YaFactory.create();
           item.play(vo);
           itemArr[i] = item;
           nextLayer = false;
-          break;
         }
       }
     }
@@ -94,5 +93,4 @@ function YaDanmaku() {
   }
 }
 
-module.exports = YaDanmaku;
 window['YaDanmaku'] = YaDanmaku;

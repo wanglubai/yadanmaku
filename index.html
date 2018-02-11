@@ -10,6 +10,7 @@
     .type0 {
       opacity: 0.5;
       border: 4px solid #ff00ff;
+      color: #000000;
     }
 
     .type1 {
@@ -57,17 +58,18 @@
       class 在当前弹幕容器上追加class属性
       */
       danmaku.play({
-        'msg': '<font class="type0" color="#666666">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa1</font>'
+        'msg': '吃吧市场报价暗示从B爱上擦拭擦拭擦',
+        'class': 'type0'
       });
       danmaku.play({
-        'msg': '<font color="#666666">hello world</font>',
+        'msg': 'hello world',
         'class': 'type1'
       });
       danmaku.play({
         'msg': '<img class="type2img" src="http://pic.plures.net/users/avatar/056/697/643/56697643/8f2f8310290eb3bc8618dcd89fe0f79e.jpg" style="width:20px;height:20px"><font color="#ff0000">asas</font>',
         'class': 'type2'
       });
-    }, 1000/24)
+    }, 1000 / 24)
   </script>
 
 </body>
