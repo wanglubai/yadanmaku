@@ -39,6 +39,8 @@
      'class': 'type2'
   });
 ```
+
+[demo](http://player.plures.net/test/ws/index.html)
   
 msg支持html标签
 可向单条弹幕添加class，内部并没有封装太多style，主要由自己添加class实现 
