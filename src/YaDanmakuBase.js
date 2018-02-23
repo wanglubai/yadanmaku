@@ -18,7 +18,8 @@ function YaDanmakuBase(vo) {
     tempThis._parent = vo['parent'];
 
     tempThis._display[0].className = 'YaDanmakuBase';
-    tempThis._display[0].style = '';
+    tempThis._display.removeAttr('style');
+    // tempThis._display[0].style = '';
 
     vo['class'] && tempThis._display.addClass(vo['class']);
     tempThis._parent.append(tempThis._display);
@@ -26,11 +27,12 @@ function YaDanmakuBase(vo) {
 
     tempThis._display.css('position', "absolute");
     tempThis._display.css('top', vo['top'] + "px");
+
     tempThis._display.css('transform', "translateX(" + tempThis._parent.width() + "px");
 
     var time = parseInt((tempThis._parent.width() - tempThis._display.width()) / tempThis._speed / 24);
-    tempThis._display.css('transition', "-webkit-transform " + time + "s linear");
-    tempThis._display.one('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd', tempThis.destroy);
+    tempThis._display.css('transition', "transform " + time + "s linear");
+    tempThis._display.one('transitionend', tempThis.destroy);
     setTimeout(function () {
       tempThis._isInit = true;
       tempThis._display.css('transform', 'translateX(' + -tempThis._display.width() + 'px)');
