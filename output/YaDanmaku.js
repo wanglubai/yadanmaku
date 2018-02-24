@@ -88,6 +88,7 @@ function YaDanmakuBase(vo) {
   tempThis._vo = null;
   tempThis._parent = null;
   tempThis._display = $("<div></div>");
+  tempThis._time_interval = 0;
   tempThis.play = function (vo) {
     tempThis._isDestroy = false;
     tempThis._canPush = false;
@@ -98,8 +99,8 @@ function YaDanmakuBase(vo) {
     tempThis._parent = vo['parent'];
 
     tempThis._display[0].className = 'YaDanmakuBase';
-    tempThis._display.removeAttr('style');
-    // tempThis._display[0].style = '';
+    //tempThis._display.removeAttr('style');
+    tempThis._display[0].style = '';
 
     vo['class'] && tempThis._display.addClass(vo['class']);
     tempThis._parent.append(tempThis._display);
@@ -115,6 +116,7 @@ function YaDanmakuBase(vo) {
     tempThis._display.one('transitionend', tempThis.destroy);
     setTimeout(function () {
       tempThis._isInit = true;
+      tempThis._time_interval = (tempThis._parent.width() + 20) / tempThis._speed * 6 + new Date().getTime();
       tempThis._display.css('transform', 'translateX(' + -tempThis._display.width() + 'px)');
     }, 1);
   };
@@ -133,7 +135,8 @@ function YaDanmakuBase(vo) {
     if (tempThis._canPush || tempThis._isDestroy) {
       return true;
     }
-    if (tempThis._display.position().left < tempThis._parent.width() - tempThis._display.width() - 20) {
+    if (new Date().getTime() > tempThis._time_interval) {
+      tempThis._canPush = true;
       return true;
     }
     return false;
