@@ -14,13 +14,13 @@ function YaDanmakuBase(vo) {
     tempThis._isInit = false;
 
     tempThis._vo = vo;
-    tempThis._speed = vo['speed'] ? vo['speed'] : 2 * Math.random() + 3;
+    tempThis._speed = vo['speed'] ? vo['speed'] : 2 * Math.random() + 2.5;
     tempThis._parent = vo['parent'];
 
     tempThis._display[0].className = 'YaDanmakuBase';
-    tempThis._display[0].style = '';
 
     vo['class'] && tempThis._display.addClass(vo['class']);
+    vo['style'] && tempThis._display.css(vo['style']);
     tempThis._parent.append(tempThis._display);
     tempThis._display.append(vo['msg']);
 
@@ -28,7 +28,7 @@ function YaDanmakuBase(vo) {
     tempThis._display.css('top', vo['top'] + "px");
     tempThis._display.css('transform', "translateX(" + tempThis._parent.width() + "px");
 
-    var time = parseInt((tempThis._parent.width() - tempThis._display.width()) / tempThis._speed / 24);
+    var time = parseInt((tempThis._parent.width() + tempThis._display.width()) / tempThis._speed / 24);
     tempThis._display.css('transition', "-webkit-transform " + time + "s linear");
     tempThis._display.one('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd', tempThis.destroy);
     setTimeout(function () {
@@ -37,8 +37,10 @@ function YaDanmakuBase(vo) {
     }, 1);
   }
   tempThis.destroy = function () {
+    tempThis._isDestroy = true;
     tempThis._display.empty();
-    tempThis._display[0].className = '';
+    tempThis._display.removeAttr('class');
+    tempThis._display[0].style = '';
     YaFactory.recycle(tempThis);
   }
   tempThis.getSpeed = function () {

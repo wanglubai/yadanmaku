@@ -16,7 +16,7 @@ function YaDanmaku() {
   tempThis._maxNum = -1;
   tempThis._startRatio = 0;
   tempThis._endRatio = 1;
-
+  tempThis._setInterval = -1;
   tempThis.init = function (vo) {
     tempThis._vo = vo;
     tempThis._parent = vo['parent'];
@@ -36,6 +36,11 @@ function YaDanmaku() {
     if (tempThis._maxNum == -1 || tempThis._voList.length < tempThis._maxNum) {
       tempThis._voList.push(vo);
     }
+  }
+
+  tempThis.destory = function () {
+    clearInterval(tempThis._setInterval);
+    $(tempThis._parent).empty();
   }
 
   tempThis.setRatio = function (start, end) {
@@ -68,7 +73,7 @@ function YaDanmaku() {
       if (itemArr[i] == null) {
         vo = tempThis._voList.shift();
         vo['parent'] = tempThis._display;
-        vo['top'] = tempThis._lineHeight * i;
+        vo['top'] = tempThis._lineHeight * i + 2;
         item = YaFactory.create();
         item.play(vo);
         itemArr[i] = item;
@@ -78,7 +83,7 @@ function YaDanmaku() {
         if (curItem.canPush()) {
           vo = tempThis._voList.shift();
           vo['parent'] = tempThis._display;
-          vo['top'] = tempThis._lineHeight * i;
+          vo['top'] = tempThis._lineHeight * i + 2;
           vo['speed'] = curItem.getSpeed();
           item = YaFactory.create();
           item.play(vo);

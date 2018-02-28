@@ -3,7 +3,11 @@ import YaDanmakuBase from './YaDanmakuBase';
 function YaFactory() {
   var tempThis = this;
   tempThis._pool = [];
-
+  tempThis._isDestory=false;
+  tempThis.destory=function(){
+    tempThis._isDestory=true;
+  }
+  
   tempThis.create = function () {
     if (tempThis._pool.length > 0) {
       return tempThis._pool.pop();

@@ -94,13 +94,13 @@ function YaDanmakuBase(vo) {
     tempThis._isInit = false;
 
     tempThis._vo = vo;
-    tempThis._speed = vo['speed'] ? vo['speed'] : 2 * Math.random() + 3;
+    tempThis._speed = vo['speed'] ? vo['speed'] : 2 * Math.random() + 2.5;
     tempThis._parent = vo['parent'];
 
     tempThis._display[0].className = 'YaDanmakuBase';
-    tempThis._display[0].style = '';
 
     vo['class'] && tempThis._display.addClass(vo['class']);
+    vo['style'] && tempThis._display.css(vo['style']);
     tempThis._parent.append(tempThis._display);
     tempThis._display.append(vo['msg']);
 
@@ -108,7 +108,7 @@ function YaDanmakuBase(vo) {
     tempThis._display.css('top', vo['top'] + "px");
     tempThis._display.css('transform', "translateX(" + tempThis._parent.width() + "px");
 
-    var time = parseInt((tempThis._parent.width() - tempThis._display.width()) / tempThis._speed / 24);
+    var time = parseInt((tempThis._parent.width() + tempThis._display.width()) / tempThis._speed / 24);
     tempThis._display.css('transition', "-webkit-transform " + time + "s linear");
     tempThis._display.one('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd', tempThis.destroy);
     setTimeout(function () {
@@ -117,8 +117,10 @@ function YaDanmakuBase(vo) {
     }, 1);
   };
   tempThis.destroy = function () {
+    tempThis._isDestroy = true;
     tempThis._display.empty();
-    tempThis._display[0].className = '';
+    tempThis._display.removeAttr('class');
+    tempThis._display[0].style = '';
     _YaFactory2.default.recycle(tempThis);
   };
   tempThis.getSpeed = function () {
@@ -160,6 +162,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function YaFactory() {
   var tempThis = this;
   tempThis._pool = [];
+  tempThis._isDestory = false;
+  tempThis.destory = function () {
+    tempThis._isDestory = true;
+  };
 
   tempThis.create = function () {
     if (tempThis._pool.length > 0) {
@@ -209,7 +215,7 @@ function YaDanmaku() {
   tempThis._maxNum = -1;
   tempThis._startRatio = 0;
   tempThis._endRatio = 1;
-
+  tempThis._setInterval = -1;
   tempThis.init = function (vo) {
     tempThis._vo = vo;
     tempThis._parent = vo['parent'];
@@ -229,6 +235,11 @@ function YaDanmaku() {
     if (tempThis._maxNum == -1 || tempThis._voList.length < tempThis._maxNum) {
       tempThis._voList.push(vo);
     }
+  };
+
+  tempThis.destory = function () {
+    clearInterval(tempThis._setInterval);
+    $(tempThis._parent).empty();
   };
 
   tempThis.setRatio = function (start, end) {
@@ -261,7 +272,7 @@ function YaDanmaku() {
       if (itemArr[i] == null) {
         vo = tempThis._voList.shift();
         vo['parent'] = tempThis._display;
-        vo['top'] = tempThis._lineHeight * i;
+        vo['top'] = tempThis._lineHeight * i + 2;
         item = _YaFactory2.default.create();
         item.play(vo);
         itemArr[i] = item;
@@ -271,7 +282,7 @@ function YaDanmaku() {
         if (curItem.canPush()) {
           vo = tempThis._voList.shift();
           vo['parent'] = tempThis._display;
-          vo['top'] = tempThis._lineHeight * i;
+          vo['top'] = tempThis._lineHeight * i + 2;
           vo['speed'] = curItem.getSpeed();
           item = _YaFactory2.default.create();
           item.play(vo);
