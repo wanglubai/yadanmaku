@@ -15,7 +15,7 @@ function YaDanmakuBase(vo) {
     tempThis._isInit = false;
 
     tempThis._vo = vo;
-    tempThis._speed = vo['speed'] ? vo['speed'] : 2 * Math.random() + 1;
+    tempThis._speed = vo['speed'] ? vo['speed'] : 2 * Math.random() + 2;
     tempThis._parent = vo['parent'];
 
     tempThis._display[0].className = 'YaDanmakuBase';
