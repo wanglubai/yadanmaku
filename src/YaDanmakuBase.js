@@ -8,14 +8,13 @@ function YaDanmakuBase(vo) {
   tempThis._vo = null;
   tempThis._parent = null;
   tempThis._display = $("<div></div>");
-  tempThis._time_interval = 0;
   tempThis.play = function (vo) {
     tempThis._isDestroy = false;
     tempThis._canPush = false;
     tempThis._isInit = false;
 
     tempThis._vo = vo;
-    tempThis._speed = vo['speed'] ? vo['speed'] : 2 * Math.random() + 2;
+    tempThis._speed = vo['speed'] ? vo['speed'] : 2 * Math.random() + 2.5;
     tempThis._parent = vo['parent'];
 
     tempThis._display[0].className = 'YaDanmakuBase';
@@ -32,12 +31,11 @@ function YaDanmakuBase(vo) {
 
     tempThis._display.css('transform', "translateX(" + tempThis._parent.width() + "px");
 
-    var time = parseInt((tempThis._parent.width() - tempThis._display.width()) / tempThis._speed / 24);
+    var time = parseInt((tempThis._parent.width() + tempThis._display.width()) / tempThis._speed / 24);
     tempThis._display.css('transition', "transform " + time + "s linear");
     tempThis._display.one('transitionend', tempThis.destroy);
     setTimeout(function () {
       tempThis._isInit = true;
-      tempThis._time_interval = (tempThis._parent.width() + 20) / tempThis._speed * 6 + new Date().getTime();
       tempThis._display.css('transform', 'translateX(' + -tempThis._display.width() + 'px)');
     }, 1);
   }
@@ -58,8 +56,7 @@ function YaDanmakuBase(vo) {
     if (tempThis._canPush || tempThis._isDestroy) {
       return true;
     }
-    if (new Date().getTime() > tempThis._time_interval) {
-      tempThis._canPush=true;
+    if (tempThis._display.position().left < tempThis._parent.width() - tempThis._display.width() - 20) {
       return true;
     }
     return false;
