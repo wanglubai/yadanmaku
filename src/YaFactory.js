@@ -9,12 +9,12 @@ function YaFactory() {
   }
   
   tempThis.create = function () {
-    if (tempThis._pool.length > 0) {
-      return tempThis._pool.pop();
-    } else {
+    // if (tempThis._pool.length > 0) {
+    //   return tempThis._pool.pop();
+    // } else {
       var item = new YaDanmakuBase()
       return item;
-    }
+    // }
   }
 
   tempThis.recycle = function (ele) {

@@ -121,10 +121,10 @@ function YaDanmakuBase(vo) {
   };
   tempThis.destroy = function () {
     tempThis._isDestroy = true;
-    tempThis._display.empty();
-    tempThis._display.removeAttr('class');
-    tempThis._display[0].style = '';
-    _YaFactory2.default.recycle(tempThis);
+    tempThis._display.remove();
+    // tempThis._display.removeAttr('class');
+    // tempThis._display[0].style = '';
+    // YaFactory.recycle(tempThis);
   };
   tempThis.getSpeed = function () {
     return tempThis._speed;
@@ -171,12 +171,12 @@ function YaFactory() {
   };
 
   tempThis.create = function () {
-    if (tempThis._pool.length > 0) {
-      return tempThis._pool.pop();
-    } else {
-      var item = new _YaDanmakuBase2.default();
-      return item;
-    }
+    // if (tempThis._pool.length > 0) {
+    //   return tempThis._pool.pop();
+    // } else {
+    var item = new _YaDanmakuBase2.default();
+    return item;
+    // }
   };
 
   tempThis.recycle = function (ele) {

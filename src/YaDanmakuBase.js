@@ -41,10 +41,10 @@ function YaDanmakuBase(vo) {
   }
   tempThis.destroy = function () {
     tempThis._isDestroy = true;
-    tempThis._display.empty();
-    tempThis._display.removeAttr('class');
-    tempThis._display[0].style = '';
-    YaFactory.recycle(tempThis);
+    tempThis._display.remove();
+    // tempThis._display.removeAttr('class');
+    // tempThis._display[0].style = '';
+    // YaFactory.recycle(tempThis);
   }
   tempThis.getSpeed = function () {
     return tempThis._speed;
